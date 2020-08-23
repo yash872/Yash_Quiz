@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Yash's Quiz | Home {% endblock title %}
+{% block content %}
+
+    <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
+      <div class="container text-center">
+        <img src="templates/quiz/logo.png" width="200" alt="Yash's Quiz">
+        <p class="display-4 d-none d-sm-block">✨ Test Your Skills & Become a Master ✨.</p>
+        <p class="lead">~ We organize quizzes on various topics ~</p>
+
+        {% if not request.user.is_active %}
+        <p><strong>🤘 : Sign up for Attempt the Quiz : 🤘</strong></p>
+        <a href="{% url 'quiz:register' %}" class="btn btn-lg btn-info mt-1">Sign Up &nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i></a>
+
+        {% else %}
+        <a href="{% url 'quiz:play' %}" class="btn btn-lg btn-info mt-1">Let's play</a>&nbsp;
+        <a href="{% url 'quiz:leaderboard' %}" class="btn btn-lg btn-info mt-1">Leaderboard</a>
+        {% endif %}
+      </div>  
+    </section>
+
+{% endblock content %}

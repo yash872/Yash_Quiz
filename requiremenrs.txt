@@ -1,0 +1,11 @@
+Django
+django-crispy-forms
+django-model-utils
+Pillow
+pytz
+gunicorn
+whitenoise
+dj-database-url
+django-heroku
+psycopg2
+python-decouple

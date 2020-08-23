@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} Yash's Quiz | Welcome 😎 {% endblock title %}
+{% block content %}
+{% if question is None %}
+
+<div class="container">
+  <div class="jumbotron my-5">
+    <h1> You have Already Answered all of our Questions. 😃✌</h1>
+    <br><br>
+    <a href="{% url 'quiz:leaderboard' %}" class="btn btn-lg btn-info">🏆 See the Leaderboard here 🏆</a>
+  </div>
+</div>
+
+{% else %}
+
+<div class="container">
+  
+  <div class="jumbotron my-4">
+    <h3>Question 👉</h3>
+    <br>
+    <h3 class="text-info">{{ question.html|safe }}</h3>
+    <br>
+    <form class="form" action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="question_pk" value="{{ question.pk }}">
+        {% for choice in question.choices.all %}
+          <div class="form-check mx-4">
+            <input class="form-check-input" type="radio" name="choice_pk" id="choice-{{ forloop.counter }}" value="{{ choice.pk }}">
+            <label class="form-check-label" for="choice-{{ forloop.counter }}">
+              {{ choice.html|safe }}
+            </label>
+          </div>
+
+        {% endfor %}
+        <br>
+        <input class="btn btn-info btn-lg" type="submit" value="Submit">  
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}
